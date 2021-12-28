@@ -117,7 +117,9 @@
 
 (defn one-jar
   [{:keys [basis jar-file main-class]
-    :or {main-class "clojure.main"}}]
+    :or {main-class "clojure.main"}
+    :as params}]
+  (println "Using params: " params)
   (write-jar
     basis
     jar-file
