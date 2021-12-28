@@ -119,8 +119,6 @@
   [{:keys [basis jar-file main-class]
     :or {main-class "clojure.main"}
     :as params}]
-  (println "Using params: " params)
-  (println "Jar-file = " jar-file, ", type=" (type jar-file))
   (write-jar
     basis
     jar-file
