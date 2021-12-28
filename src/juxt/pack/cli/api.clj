@@ -111,4 +111,4 @@
                   Prefer setting :main-opts in your basis and using
                   clojure.main to load your main."
   [{:keys [basis] :as params}]
-  (pack/one-jar (assoc params :basis (or basis (create-basis nil)))))
+  (pack/one-jar (assoc params :basis (or basis (create-basis (select-keys params [:aliases])))))
