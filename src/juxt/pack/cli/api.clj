@@ -45,7 +45,7 @@
                 otherwise ~/.docker/config.json
     :tar - Write a tar file, requires :tar-file to be set"
   [{:keys [basis] :as params}]
-  (pack/docker (assoc params :basis (or basis (create-basis nil)))))
+  (pack/docker (assoc params :basis (or basis (create-basis (select-keys params [:aliases]))))))
 
 (defn skinny
   "Output jars or directories from paths and libs.
@@ -61,7 +61,7 @@
     :path-coerce - nil or :jar. :jar will output a jar file to :path instead of
                    a directory, default = nil"
   [{:keys [basis] :as params}]
-  (pack/skinny (assoc params :basis (or basis (create-basis nil)))))
+  (pack/skinny (assoc params :basis (or basis (create-basis (select-keys params [:aliases]))))))
 
 (defn library
   "Produce a library from :paths in a basis
@@ -73,7 +73,7 @@
            META-INF/maven/<group>/<artifact>/pom.xml
     :lib - required if :pom supplied, used to create pom.xml path"
   [{:keys [basis] :as params}]
-  (pack/library (assoc params :basis (or basis (create-basis nil)))))
+  (pack/library (assoc params :basis (or basis (create-basis (select-keys params [:aliases]))))))
 
 (defn aws-lambda
   "Produce a zip file that can be uploaded to AWS lambda.  You will need to AOT
@@ -87,7 +87,7 @@
     :basis - basis to use, if not provided will create a basis without :user
     :lambda-file - required, lambda file to create"
   [{:keys [basis] :as params}]
-  (pack/aws-lambda (assoc params :basis (or basis (create-basis nil)))))
+  (pack/aws-lambda (assoc params :basis (or basis (create-basis (select-keys params [:aliases]))))))
 
 (defn one-jar
   "Produce a self-executable jar, using One-Jar.  This is an alternative to an
